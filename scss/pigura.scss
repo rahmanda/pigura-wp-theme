@@ -1,0 +1,855 @@
+@import 'reset';
+@import 'bourbon';
+@import 'neat';
+@import url(http://fonts.googleapis.com/css?family=Oxygen:400,700,300);
+
+/*
+font settings
+*/
+
+$typeface : 'Oxygen', Helvetica, Arial, sans-serif; 
+$font-size : 12px;
+$line-height: 1.2rem;
+
+/*
+size
+ */
+$max-outer-container : 960px;
+/*
+swatches
+*/
+
+$color-bg-main: #1F1F1F; //#DFEBE7; //#1F1F1F; 
+$color-text: #3E3E3E;
+$color-navbar: #1D9D73;
+$color-text-navbar: #DDDDDD;
+$color-card: white;
+$color-border-card: #DDDDDD;
+$color-icon: #999999;
+$color-post: $color-icon;
+$color-post-bg: #E7E7E7;
+
+/*
+general style
+*/
+* {
+	box-sizing: border-box;
+}
+body {
+	font-family: $typeface;
+	color: $color-text;
+	font-size: $font-size;
+	line-height: $line-height;
+	background-color: $color-bg-main;
+	font-weight: 300;
+}
+
+a, a:link, a:visited, a:hover {
+	color: $color-text; 
+	text-decoration: none; 
+}
+a:hover {
+	cursor: pointer;
+	text-decoration: underline; 
+}
+
+input, textarea {
+	font-family: inherit;
+	font-size: inherit;
+}
+
+input[type='email'], input[type='text'],
+input[type='password'], textarea {
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+}
+i {
+	color: $color-icon; 
+}
+
+/*
+navbar
+*/
+.nav-wrap {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	background-color: $color-navbar;
+	border-bottom: 1px solid darken($color-navbar, 5%);
+	line-height: 0;
+	z-index: 99999;
+}
+.nav-wrap nav {
+	@include outer-container($max-outer-container);
+	font-size: 1.25em;
+}
+.brand {
+	float: left;
+	overflow: hidden;
+	p {
+		display: inline-block;
+		font-weight: bold;
+		line-height: 50px;
+		background: url('../img/pigura-logo-white.png') no-repeat;
+		background-size: auto 35px;
+		background-position: center;
+		text-indent: -99999px;
+		width: 74px;
+	}
+}
+.list-trends {
+	overflow: hidden;
+	float: right;
+}
+.list-trends li {
+	float: left;
+	padding: 0 15px;
+	a {
+		color: $color-text-navbar;
+		line-height: 50px;
+		&:hover {
+			color: lighten($color-text-navbar, 30%);
+			text-decoration: none;
+		}
+	}
+}
+.search-box {
+	float: right;
+	line-height: 50px;
+	margin-left: 15px;
+	display: block;
+	div {
+		position: relative;
+		display: inline;
+	}
+	.input-search {
+		border: 1px solid $color-navbar;
+		border-radius: 4px;
+		height: 25px;
+		width: 188px;
+		padding: 0 22px 0 10px;
+		color: darken($color-border-card, 10%);
+		background-color: darken($color-navbar, 20%);
+		&:focus {
+			outline: none;
+		}
+	}
+	.btn-search {
+		position: absolute !important;
+		bottom: -2px;
+		right: 0;
+		height: 25px;
+		width: 25px;
+		display: inline-block;
+		border: none;
+		cursor: pointer;
+		background-color: transparent;
+		color: $color-border-card;
+		position: relative;
+	}
+}
+
+.main-content {
+	padding: 89px 0 20px 0;
+	border-bottom: 1px solid $color-border-card;
+}
+
+/*
+pigura's
+*/
+.piguras {
+	@include outer-container($max-outer-container);
+}
+
+.pigura {
+	@include span-columns(3);
+	@include omega(4n);
+	box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+	margin-bottom: 1.5em;
+	overflow: hidden;
+	background-color: $color-card; 
+	.pigura-thumb, .pigura-info, .pigura-title, 
+	.pigura-author, .pigura-stats, .pigura-tags {
+		overflow: hidden;
+		display: block;
+	}
+	.pigura-info {
+		padding: 6px 10px;
+		.pigura-tags, .pigura-author {
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+		.pigura-author {
+			margin-bottom: 2px;
+		}
+		.pigura-author .name {
+			display: inline;
+			a {
+				color: #1D9D73;
+			}
+		}
+		.pigura-tags {
+			border-top: 1px solid $color-border-card;
+			line-height: 30px;
+			a {
+				text-transform: capitalize;
+			}
+			a:hover {
+				text-decoration: none;
+			}
+		}
+		.pigura-title {
+			margin-bottom: 6px;
+			text-overflow: ellipsis;
+			height: 3.25em;
+			font-weight: 800;
+			a {
+				color: #1D9D73;
+				font-size: 1.15em;
+			}
+		}
+	}
+	.pigura-thumb {
+		padding: 6px 6px 0 6px;; 
+		overflow: hidden;
+		a {
+			display: block;
+			max-height: 211px;
+			max-width: 211px; 
+			overflow: hidden;
+		}
+	}
+	.pigura-thumb a img {
+		width: 100%;
+		height: 100%;	
+	}
+
+	.pigura-stats {
+		padding: 0 10px;
+		border-top: 1px solid $color-border-card;
+		line-height: 30px;
+		background-color: #F6F6F6;
+		.loves, .comments {
+			font-weight: bold;
+			margin-right: 10px;
+		}
+	}
+}
+
+/*
+pagination control
+*/
+.page-control .control-group {
+	text-align: center;
+	a {
+		font-size: 44px;
+		margin-right: 10px;
+		i:hover {
+			color: lighten($color-icon, 5%);
+		}
+	}
+	a:nth-child(2n) {
+		margin-right: 0;
+	}
+}
+
+/*
+pigura post
+*/
+.pigura-post {
+	@include outer-container($max-outer-container);
+	background-color: $color-post-bg;
+	.pigura-header {
+		background-color: $color-navbar; //#130E0E;
+		padding: 15px 20px;
+		position: relative;
+		border: 1px solid darken($color-navbar, 5%);
+		.pigura-title {
+			h1 {
+				font-size: 2em;
+				font-weight: bold;
+				color: white; //lighten($color-post, 20%);
+			}
+			margin-bottom: 10px;
+		}
+	}
+	.pigura-cats a {
+		font-size: 1.25em;
+		color: white; //lighten($color-post, 20%);
+	}
+	.pigura-wrap {
+		// width: 75%; 
+		// float: left;
+		background-color: #FCFCFC;;
+		box-shadow: 2px 0 5px rgba(0,0,0,0.2);
+		.pigura-image img{
+			width: 100%;
+			height: auto;
+			display: block;
+		}
+		.pigura-comments {
+			padding: 20px;
+			border-top: 1px solid lighten($color-post, 10%);
+			h2 {
+				font-size: 1.5em;
+				line-height: 3em;
+				font-weight: bold;
+			}
+		}
+		
+		.pigura-suggestion {
+			padding: 20px;
+			background-color: lighten($color-post, 25%);
+			a {
+				padding: 10px 15px;
+				display: block;
+				border: 1px solid $color-post;
+				border-radius: 4px;
+				font-size: 1.25em;
+				text-align: center;
+				font-weight: 600;
+				&:hover {
+					text-decoration: none;
+					background-color: $color-post;
+					color: lighten($color-post, 35%);
+				}
+			}
+		}
+	}
+	.pigura-author {
+		position: absolute;
+		right: 0;
+		top: 0;
+		height: 79px;
+		overflow: hidden;
+	}
+	.pigura-author .avatar-wrap {
+		height: 79px;
+		float: right;
+		padding: 0 20px 0 0;
+	}
+	.pigura-author .author-avatar {
+		width: 50px;
+		height: 50px;
+		margin: 15px 0 0 0;
+		border-radius: 50%;
+		overflow: hidden;
+		display: block;
+		img {
+			max-height: 100%;
+			min-width: 100%;
+		}
+	}
+	.pigura-author .author-name {
+		float: right;
+		height: 79px;
+		display: block;
+		text-align: center;
+		font-size: 1.35em;
+		margin-right: 10px;
+		a:hover {
+			text-decoration: none;
+		}
+		a {
+			color: white;
+		}
+		h2 {
+			line-height: 79px;
+		}
+	}
+	.pigura-info {
+		// @include outer-container(100%);
+		margin: 20px 0; 
+		height: 143px;
+		.pigura-desc, .pigura-stats, 
+		.pigura-acts, .pigura-tags {
+			// @include span-columns(3);
+			width: 25%;
+			float: left;
+			padding: 0 20px;
+			height: 143px;
+			font-size: 1.15em;
+			// overflow: hidden;
+			h2 {
+				font-weight: 700;
+				font-size: 1.2em;
+				margin-bottom: 10px;
+			}
+		}
+		.pigura-desc {
+			overflow: hidden;
+			border-right: 1px dotted $color-border-card;
+		}
+		.pigura-stats {
+			border-right: 1px dotted $color-border-card;
+			table {
+				width: 100%;
+			}
+			table tbody tr td {
+				padding-bottom: 10px;
+			}
+			.value {
+				text-align: right;
+				font-weight: bold;
+				font-size: 1.15rem;
+			}
+		}
+		.pigura-acts {
+			padding: 0 20px;
+			.act-love-wrap, .act-share-wrap {
+				position: relative;
+				margin-bottom: 10px;
+				display: block;
+				a:hover {
+					cursor: pointer;
+					text-decoration: none;
+				}
+			}
+			.act-share-wrap:hover .social-buttons {
+				pointer-events: auto;
+				opacity: 1;
+				-webkit-transform: perspective(1000px) rotate3d(1,0,0,0deg);
+				transform: perspective(1000px) rotate3d(1,0,0,0deg);
+			}
+			.act-share-wrap:hover .act-share {
+				@include linear-gradient(to bottom, white, #E8E8E8); 
+			}
+			.act-love, .act-share {
+				color: darken($color-text, 15%);
+				display: block;
+				font-size: 1.15em;
+				text-align: center;
+				line-height: 3em;
+				font-weight: 600;
+				border-radius: 4px;
+				// box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+				@include linear-gradient(to bottom, white 40%, #E8E8E8);
+				border: 1px solid $color-border-card;
+				i {
+					font-size: 1.15em;
+				}
+			}
+			.voted {
+				pointer: default;
+			}
+			.act-love-hover:hover .voted #act-voted {
+				 
+			}
+			.voted .act-love {
+				@include linear-gradient(to bottom, #DC181B 40%, darken(#DC181B, 15%));
+				color: white;
+				border: 1px solid darken($color-border-card, 10%);
+				i {
+					color: white;
+				}
+			}
+			.act-love i {
+				color: #DC181B;
+			}
+			.act-share i {
+				color: #1896DC;
+			}
+			.social-buttons {
+				position: absolute;
+				z-index: 9999;
+				opacity: 0;
+				cursor: default;
+				pointer-events: none;
+				position: absolute;
+				top: 100%;
+				left: 0;
+				background-color: #E8E8E8;
+				box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+				width: 100%; 
+				border: 1px solid $color-border-card;
+				@include border-bottom-radius(4px);
+				padding: 5px 8px;
+				/* transform */
+				-webkit-transform-origin: 50% 0;
+				transform-origin: 50% 0;
+				-webkit-transform: perspective(1000px) rotate3d(1,0,0,-45deg);
+				transform: perspective(1000px) rotate3d(1,0,0,-45deg);
+				-webkit-transition: opacity 0.2s, -webkit-transform 0.2s;
+				transition: opacity 0.2s, transform 0.2s;
+			}
+			.social-buttons .btn-facebook {
+				float: left;
+			}
+			 
+		}
+		.pigura-tags {
+			border-right: 1px dotted $color-border-card;
+			a { 
+				padding: 5px 8px;
+				background: $color-border-card;
+				border-radius: 4px;
+				margin: 0 5px 10px 0;
+				display: inline-block;
+				&:hover {
+					text-decoration: none;
+				}
+			}
+		}
+	}
+	.pigura-profile {
+		background-color: lighten(#000000, 30%);
+		overflow: hidden;
+		box-shadow: inset 0 3px 10px rgba(0,0,0,0.6);
+		.author, .other-pigura {
+			width: 50%;
+			height: 80px;
+			margin: 20px 0;
+			float: left;
+		}
+		.author {
+			padding-left: 20px;
+		}
+		.avatar {
+			float: left;
+			width: 80px;
+			height: 80px;
+			overflow: hidden;
+			border-radius: 50%;
+			img {
+				max-height: 100%;
+				min-width: 100%;
+			}
+		}
+		.bio {
+			height: 80px;
+			color: $color-border-card;
+			padding-left: 10px;
+			float: left;
+			.name {
+				font-size: 2em;
+				line-height: 2em;
+				a {
+					color: white;
+				}
+			}
+			.prof {
+				font-size: 1.25em;
+			}
+		}
+		.other-pigura {
+			overflow-x: auto;
+			overflow-y: hidden;
+			div {
+				position: relative;
+				width: 80px;
+				height: 80px;
+				margin-right: 10px;
+				display: inline-block;
+				overflow: hidden;
+			}
+			div::before {
+				position: absolute;
+				content: '';
+				width: 100%;
+				height: 100%;
+				display: block;
+				background-color: black;
+				opacity: 0.3;
+				top: 0;
+				left: 0;
+			}
+			a:hover div::before {
+				opacity: 0;
+			}
+			div img {
+				max-height: 100%;
+				min-width: 100%;
+			}
+		}
+	}
+	
+}
+/*
+profile
+ */
+.profile-page {
+	padding-top: 51px;
+}
+.profile .bio {
+	background-color: white;
+	padding: 20px;
+	border-bottom: 1px solid $color-border-card; 
+	.avatar {
+		width: 100px;
+		height: 100px;
+		display: block;
+		overflow: hidden;
+		margin: 0 auto;
+		border-radius: 50%;
+	}
+	.avatar img {
+		max-height: 100%;
+		min-width: 100%;
+	}
+	.name {
+		margin-top: 20px;
+	}
+	.name h1 {
+		font-size: 2.5em;
+		line-height: 1em;  
+		font-weight: 700;
+		text-align: center;
+	}
+	.prof {
+		margin-top: 10px;
+		font-size: 2em;
+		text-align: center;
+		font-weight: 400;
+	}
+	.web {
+		margin-top: 10px;
+		font-size: 1.5em;
+		text-align: center;
+		font-weight: 400;
+	}
+	.desc {
+		margin-top: 20px;
+		@include outer-container(500px);
+		text-align: center;
+		font-size: 1.2em;
+	}
+	.social {
+		margin-top: 10px;
+	}
+	.social ul{
+		text-align: center;
+		li {
+			display: inline-block;
+		}
+		li a {
+			position: relative;
+			display: inline-block;
+			height: 25px;
+			width: 25px;
+			border-radius: 50%;
+			background-color: $color-navbar;
+			font-size: 1.25em;
+			margin-right: 5px;
+		}
+		li a i {
+			position: absolute;
+			color: white;
+			left: 25%;
+			top: 20%;
+		}
+	}
+}
+.profile .gallery-title h2{
+	text-align: center;
+	color: lighten($color-text, 5%);
+	font-size: 2em;
+	line-height: 2.5em;
+	font-weight: 400;
+} 
+
+/*
+Archive
+ */
+.archive-title, .search-title {
+	@include outer-container($max-outer-container);
+	font-size: 2em;
+	line-height: 1.5em;
+	margin-bottom: 20px;
+	color: $color-border-card;
+}
+.post-categories {
+	display: inline-block;
+	text-transform: capitalize;
+}
+/*
+no result
+ */
+.no-result {
+	@include outer-container($max-outer-container);
+	margin-bottom: 20px;
+	p {
+		text-align: center;
+		font-size: 1.2em;
+		color: $color-icon;
+	}
+}
+/*
+page
+ */
+.page {
+	@include outer-container($max-outer-container);
+	background: white;
+	.page-title {
+		font-size: 2em;
+		padding: 10px 15px;
+		line-height: 1.5em;
+		text-align: center;
+		font-weight: bold;
+		background: $color-navbar;
+		color: white;
+	}
+	.page-content {
+		font-size: 1.25em;
+		padding: 15px 20px;
+		line-height: 1.5em;
+		p {
+			margin-bottom: 1em;
+		}
+	}
+}
+/*
+comment
+ */
+.pigura-comments {
+	background-color: #FCFCFC;
+}
+h3[id="comments-title"] {
+	font-size: 1.25em;
+	margin-bottom: 1em;
+	display: none;
+}
+.form-allowed-tags, .comment-form-comment label[for='comment'], #reply-title {
+	display: none !important;
+}
+#commentform {
+	margin-bottom: 20px;
+	.logged-in-as, .comment-notes {
+		margin-bottom: 15px;
+	}
+	p[class^='comment-form'] {
+		margin-bottom: 10px; 
+		label {
+			display: inline-block;
+			font-size: 1.25em;
+			width: 70px;  
+		}
+	}
+	.logged-in-as a {
+		color: $color-navbar;
+	}
+	.logged-in-as a:nth-child(1) {
+		font-weight: bold;
+	}
+	#comment {
+		width: 100%;
+	}
+	input[type='text'] {
+		width: 35%;
+	}
+	textarea, input[type='text'] {
+		-webkit-transition: all 0.30s ease-in-out;
+		-moz-transition: all 0.30s ease-in-out;
+		-ms-transition: all 0.30s ease-in-out;
+		-o-transition: all 0.30s ease-in-out;
+		transition: all 0.30s ease-in-out;
+		outline: none;
+		padding: 10px 0px 10px 10px;
+		margin-bottom: 10px;
+		border: 1px solid $color-border-card;
+		border-radius: 4px;
+		&:focus {
+			box-shadow: 0 0 5px #42F2B8;
+			border: 1px solid lighten($color-navbar, 10%);
+		}
+	}
+	.form-submit .submit {
+		color: white;
+		padding: 0 20px;
+		display: block;
+		font-size: 1.15em;
+		text-align: center;
+		line-height: 3em;
+		font-weight: 600;
+		border-radius: 4px;
+		// box-shadow: 0 1px 2px rgba(0,0,0,0.5);
+		@include linear-gradient(to bottom, $color-navbar 40%, darken($color-navbar, 5%));
+		border: 1px solid darken($color-navbar, 10%);
+		&:hover {
+			cursor: pointer;
+			@include linear-gradient(to bottom, $color-navbar, darken($color-navbar, 5%));
+		}
+	}
+}
+.comment {
+	// padding: 10px;
+	border-top: 1px solid $color-border-card;
+}
+ .commentlist div[id^='div-comment-'] {
+ 	padding: 20px 0;
+ 	a {
+ 		color: $color-navbar;
+ 		font-weight: 400;
+ 	}
+ }
+.commentlist {
+	font-size: 1.15em;
+	p {
+		margin-bottom: 1em;
+		padding-left: 42px;
+	}
+	.reply {
+		padding-left: 42px;
+	}
+	.comment-meta {
+		margin-bottom: 10px;
+	}
+	.children {
+		margin-left: 32px;
+		// background-color: $color-border-card;
+	}
+	.comment .comment-author .avatar{
+		float: left;
+		margin-right: 10px;
+		border-radius: 50%;
+	}
+}
+/*
+footer
+*/
+
+.main-footer {
+	background-color: white;
+}
+
+.footer-wrap {
+	@include outer-container($max-outer-container);
+	padding: 30px 0;
+}
+
+.footer-links {
+	@include span-columns(3);
+	@include omega(4n);
+	.logo {
+		display: block;
+		background: url('../img/pigura-logo-gray.png') no-repeat;
+		background-size: auto 50px;
+		background-position: center;
+		text-indent: -99999px;
+		width: 106px;
+		height: 50px;
+	}
+	.desc {
+		margin-top: 6px;
+	}
+	ul li {
+		margin-bottom: 4px;
+	}
+	ul li a:hover {
+		text-decoration: none;
+		color: darken(#8B8B8B, 20%);
+	}
+	ul li a, p {
+		color: #8B8B8B;
+		text-transform: capitalize;
+	}
+	h3 {
+		color: #6D6D6D;
+		font-weight: bold;
+		font-size: 1.15em;
+		margin-bottom: 6px;
+	}
+}
+
+
